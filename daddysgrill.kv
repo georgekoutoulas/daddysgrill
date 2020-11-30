@@ -1,0 +1,2636 @@
+<MainScreen>:
+    add_new_order: add_new_order_btn
+    GridLayout:
+        cols:5
+        rows:3
+        
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Button:
+            id: add_new_order_btn
+            size_hint: 0.5,0.5
+            text: 'Νέα Παραγγελία'
+            epwnumo: 'ΑΝΩΝΥΜΟΣ'
+            on_press:
+                root.insert_data()
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'menu'
+        Label:
+            text:''
+        Button:
+            size_hint: 0.5,0.5
+            text: 'Νέος Πελάτης'
+            on_press:
+                # root.manager.transition.direction = 'left'
+                # root.manager.current = 'menu'
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+        Label:
+            text:''
+
+<MenuScreen>:
+    category: chk_category
+    name: chk_name
+    btn: chk_btn
+    GridLayout:
+        cols:2
+        size: root.width, root.height
+
+        GridLayout:
+            rows:4
+            size: root.width, root.height
+
+            GridLayout:
+                cols:3
+                size: 0.8,1
+
+                Button: 
+                    text: 'Ορεκτικά'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'orektika'
+
+
+                Button: 
+                    text: 'Σαλάτες'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'salates'
+                        
+
+                Button: 
+                    text: 'Καλαμάκια'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'kalamakia'
+                      
+
+                Button: 
+                    text: 'Τυλιχτά'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'tulixta'
+                        
+
+                Button: 
+                    text: 'Μερίδες'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'merides'
+                        
+
+                Button: 
+                    text: 'Με το Κιλό'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'metokilo'
+
+                Button: 
+                    text: 'Γύρος Club'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'gurosclub'
+
+                Button: 
+                    text: 'Ποικιλίες'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'poikilies'
+
+                Button: 
+                    text: 'Ποτά/Αναψυκτικά'
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'pota_anapsuktika'
+
+                Label:
+                    text:''
+        
+        GridLayout:
+            rows:3
+
+            GridLayout:
+                cols:2    
+                Label:
+                    id: chk_category
+                    text: 
+                    multiline: False 
+                Label:
+                    id: chk_name
+                    text:               
+
+            Label:
+                text:'3'
+            
+            GridLayout:
+                cols:4
+                size_hint: 0.1,0.1
+
+                Label:
+                    text:''
+
+                Button:
+                    text: 'Πίσω'
+                    size_hint: 0.5,0.5
+                    on_press:
+                        root.delete_pelati_if_back()
+                        root.manager.transition.direction = 'right'    
+                        root.manager.current = 'main'
+
+                Button:
+                    text:'Εκτύπωση'
+                    on_press:
+                        root.print_on_screen_paraggelia()
+                        #root.print_data()
+                        root.manager.transition.direction = 'right'    
+                        root.manager.current = 'main'
+
+                Button:
+                    text:'Εμφάνιση'
+                    id: chk_btn
+                    on_press:
+                        root.print_on_screen_paraggelia()
+                        
+
+                        
+<OrektikaScreen>:
+    
+    patates: chk_patates
+    patates_me_turi: chk_patates_me_turi
+    tzatziki: chk_tzatziki
+    feta: chk_feta
+    sws_giaourti_mikri: chk_sws_giaourti_mikri
+    sws_giaourti_megali: chk_sws_giaourti_megali
+    sws_moustarda_mikri: chk_sws_moustarda_mikri
+    sws_moustarda_megali: chk_sws_moustarda_megali
+    pita: chk_pita
+    
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:8
+
+            GridLayout:
+                rows:1
+                padding: root.width * .02, root.height * .02
+                size_hint: 0.05, 0.02
+                Label:
+                    text: 'Πατάτες'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_patates.text)>0 : chk_patates.text = str(int(chk_patates.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    id: chk_patates
+                    name: 'Πατάτες'
+                    price: 2.20
+                    text: '0'
+                    amount: int(chk_patates.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_patates.text = str(int(chk_patates.text) + 1)
+                        
+            GridLayout:
+                padding: root.width * .02, root.height * .02
+                rows:1
+                size_hint: 0.05, 0.02
+                Label:
+                    text: 'Πατάτες με τυρί'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_patates_me_turi.text)>0 :chk_patates_me_turi.text = str(int(chk_patates_me_turi.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_patates_me_turi
+                    name: 'Πατάτες με τυρί'
+                    price: 2.60
+                    amount: int(chk_patates_me_turi.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_patates_me_turi.text = str(int(chk_patates_me_turi.text) + 1)
+
+            GridLayout:
+                padding: root.width * .02, root.height * .02
+                rows:1
+                size_hint: 0.05, 0.02
+                Label:
+                    text: 'Τζατζίκι' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_tzatziki.text)>0 :chk_tzatziki.text = str(int(chk_tzatziki.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_tzatziki
+                    name: 'Τζατζίκι'
+                    price: 2.50
+                    amount: int(chk_tzatziki.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_tzatziki.text = str(int(chk_tzatziki.text) + 1)
+
+            GridLayout:
+                padding: root.width * .02, root.height * .02
+                rows:1
+                size_hint: 0.05, 0.02
+                Label:
+                    text: 'Φέτα Π.Ο.Π.'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_feta.text)>0 :chk_feta.text = str(int(chk_feta.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_feta
+                    name: 'Φέτα Π.Ο.Π.'
+                    price: 3.00
+                    amount: int(chk_feta.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_feta.text = str(int(chk_feta.text) + 1)
+
+            GridLayout:
+                padding: root.width * .02, root.height * .02
+                rows:1
+                size_hint: 0.05, 0.02
+                Label:
+                    text: 'Πίτα σκέτη'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_pita.text)>0 :pita.text = str(int(chk_pita.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_pita
+                    name: 'Πίτα σκέτη'
+                    price: 0.30
+                    amount: int(chk_pita.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_pita.text = str(int(chk_pita.text) + 1)
+
+            GridLayout:
+                rows:1
+                size_hint:0.05,0.015
+                Label:
+                    text:''
+                Label:
+                    size_hint:0.6,1
+                    text:'Μικρή'
+                Label:
+                    size_hint:0.9,1
+                    text:'Μεγάλη'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .02, root.height * .02
+                size_hint: 0.05, 0.02
+                Label:
+                    size_hint:0.85,1
+                    text: 'Σως γιαουρτιού'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_sws_giaourti_mikri.text)>0 :chk_sws_giaourti_mikri.text = str(int(chk_sws_giaourti_mikri.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_sws_giaourti_mikri
+                    name: 'Σως γιαουρτιού μικρή'
+                    price: 0.50
+                    amount: int(chk_sws_giaourti_mikri.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_sws_giaourti_mikri.text = str(int(chk_sws_giaourti_mikri.text) + 1)
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_sws_giaourti_megali.text)>0 :chk_sws_giaourti_megali.text = str(int(chk_sws_giaourti_megali.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_sws_giaourti_megali
+                    name: 'Σως γιαουρτιού μεγάλη'
+                    price: 1.00
+                    amount: int(chk_sws_giaourti_megali.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_sws_giaourti_megali.text = str(int(chk_sws_giaourti_megali.text) + 1)
+
+            GridLayout:
+                rows:1
+                padding: root.width * .02, root.height * .02
+                size_hint: 0.05, 0.02
+                Label:
+                    size_hint:0.85,1
+                    text: 'Σως μουστάρδας'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_sws_moustarda_mikri.text)>0 :chk_sws_moustarda_mikri.text = str(int(chk_sws_moustarda_mikri.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_sws_moustarda_mikri
+                    name: 'Σως μουστάρδας μικρή'
+                    price: 0.50
+                    amount: int(chk_sws_moustarda_mikri.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_sws_moustarda_mikri.text = str(int(chk_sws_moustarda_mikri.text) + 1)
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_sws_moustarda_megali.text)>0 :chk_sws_moustarda_megali.text = str(int(chk_sws_moustarda_megali.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_sws_moustarda_megali
+                    name: 'Σως μουστάρδας μεγάλη'
+                    price: 1.00
+                    amount: int(chk_sws_moustarda_megali.text)
+                    value: 0
+                    category: "Ορεκτικά" 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_sws_moustarda_megali.text = str(int(chk_sws_moustarda_megali.text) + 1)
+
+            
+        GridLayout:
+            # size_hint:0.5,0.2
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+
+                Button:
+                    text: 'Πίσω'
+                    on_press:
+                        root.manager.transition.direction = 'right'    
+                        root.manager.current = 'menu'
+
+                        chk_patates.text = '0'
+                        chk_patates_me_turi.text = '0'
+                        chk_tzatziki.text = '0'
+                        chk_feta.text = '0'
+                        chk_pita.text = '0'
+                        chk_sws_moustarda_mikri.text = '0'
+                        chk_sws_moustarda_megali.text = '0'
+                        chk_sws_giaourti_mikri.text = '0'
+                        chk_sws_giaourti_megali.text = '0'
+                        
+
+                Button:
+                    text:'Αποθήκευση'
+                    on_press:
+                        root.insert_data()
+                        #app.print_on_screen_paraggelia()
+                        root.manager.transition.direction = 'right'    
+                        root.manager.current = 'menu'
+                        chk_patates.text = '0'
+                        chk_patates_me_turi.text = '0'
+                        chk_tzatziki.text = '0'
+                        chk_feta.text = '0'
+                        chk_pita.text = '0'
+                        chk_sws_moustarda_mikri.text = '0'
+                        chk_sws_moustarda_megali.text = '0'
+                        chk_sws_giaourti_mikri.text = '0'
+                        chk_sws_giaourti_megali.text = '0'
+
+                        chk_patates.value = chk_patates.value + 1
+                        chk_patates_me_turi.value = chk_patates_me_turi.value + 1
+                        chk_tzatziki.value = chk_tzatziki.value + 1
+                        chk_feta.value = chk_feta.value + 1
+                        chk_pita.value = chk_pita.value + 1
+                        chk_sws_moustarda_mikri.value = chk_sws_moustarda_mikri.value + 1
+                        chk_sws_moustarda_megali.value = chk_sws_moustarda_megali.value + 1
+                        chk_sws_giaourti_mikri.value = chk_sws_giaourti_mikri.value + 1
+                        chk_sws_giaourti_megali.value = chk_sws_giaourti_megali.value + 1
+
+<SalatesScreen>:
+
+    xwriatiki: chk_xwriatiki
+    caesars: chk_caesars
+    xwr_ulika_button: chk_xwr_ulika_button
+
+    GridLayout:
+        cols:2
+        GridLayout:
+            rows:4
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Χωριάτικη'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_xwriatiki.text)>0 : chk_xwriatiki.text = str(int(chk_xwriatiki.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_xwriatiki
+                    name: 'Χωριάτικη'
+                    price: 5.00
+                    amount: int(chk_xwriatiki.text)
+                    value: 0
+                    category: "Σαλάτες"
+                    ulika: "ΑΠ' ΟΛΑ"
+                    print_value: 0
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_xwriatiki.text = str(int(chk_xwriatiki.text) + 1)
+                Label:
+                    size_hint: 0.08,1
+                    text:''
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_xwr_ulika_button
+                    value: 0
+                    on_release: 
+                        if int(chk_xwriatiki.text) == 0: root.show_popup() 
+                        else: root.insert_data() ; chk_xwr_ulika_button.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'xwriatiki_ulika'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Caesars'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_caesars.text)>0 : chk_caesars.text = str(int(chk_caesars.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_caesars
+                    name: 'Caesars'
+                    price: 5.50
+                    amount: int(chk_caesars.text)
+                    value: 0
+                    category: "Σαλάτες"
+                    print_value: 0
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_caesars.text = str(int(chk_caesars.text) + 1)
+                Label:
+                    size_hint: 0.08,1
+                    text:''
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Υ'
+                    on_press: 
+                        root.manager.transition.direction = 'left'    
+                        root.manager.current = 'caesars_ulika'
+
+            Label:
+                text:''
+            Label:
+                text:''
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_xwriatiki.text = '0'
+                            chk_caesars.text = '0'
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_xwriatiki.text = '0'
+                            chk_caesars.text = '0'
+                            chk_caesars.value = chk_caesars.value + 1
+                            chk_xwriatiki.value = chk_xwriatiki.value + 1
+                            chk_caesars.print_value = chk_caesars.print_value + 1
+                            chk_xwriatiki.print_value = chk_xwriatiki.print_value + 1
+                            chk_xwr_ulika_button.value = 0
+
+<XwriatikiYlikaScreen>:
+    
+    xwr_ulika_ntomata: chk_xwr_ulika_ntomata
+    xwr_ulika_aggouri: chk_xwr_ulika_aggouri
+    xwr_ulika_kremmudi: chk_xwr_ulika_kremmudi
+    xwr_ulika_piperia: chk_xwr_ulika_piperia
+    xwr_ulika_elies: chk_xwr_ulika_elies
+
+    GridLayout:
+        cols:2
+        size: root.width, root.height
+
+        GridLayout:
+            rows:6
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text:'Ντομάτα'
+                CheckBox:
+                    id: chk_xwr_ulika_ntomata
+                    text:'Ντομάτα'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text:'Αγγούρι'
+                CheckBox:
+                    id: chk_xwr_ulika_aggouri
+                    text:'Αγγούρι'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text:'Κρεμμύδι'
+                CheckBox:
+                    id: chk_xwr_ulika_kremmudi
+                    text:'Κρεμμύδι'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text:'Πιπεριά'
+                CheckBox:
+                    id: chk_xwr_ulika_piperia
+                    text:'Πιπεριά'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text:'Ελιές'
+                CheckBox:
+                    id: chk_xwr_ulika_elies
+                    text:'Ελιές'
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'salates'
+                            chk_xwr_ulika_ntomata.state = 'normal'
+                            chk_xwr_ulika_aggouri.state = 'normal'
+                            chk_xwr_ulika_kremmudi.state = 'normal'
+                            chk_xwr_ulika_piperia.state = 'normal'
+                            chk_xwr_ulika_elies.state = 'normal'
+                            
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'salates'
+                            chk_xwr_ulika_ntomata.state = 'normal'
+                            chk_xwr_ulika_aggouri.state = 'normal'
+                            chk_xwr_ulika_kremmudi.state = 'normal'
+                            chk_xwr_ulika_piperia.state = 'normal'
+                            chk_xwr_ulika_elies.state = 'normal'
+
+<CaesarsYlikaScreen>:
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:1
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'salates'
+                            
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            #root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'salates'                        
+
+<KalamakiaScreen>:
+    kalamaki_xoirino: chk_kalamaki_xoirino
+    kalamaki_kotopoulo: chk_kalamaki_kotopoulo
+    kalamaki_kempap: chk_kalamaki_kempap
+    kalamaki_loukaniko: chk_kalamaki_loukaniko
+    kalamaki_kotompeikon: chk_kalamaki_kotompeikon
+    kalamaki_mpifteki_gemisto: chk_kalamaki_mpifteki_gemisto
+
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:7
+            
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Χοιρινό καλαμάκι'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kalamaki_xoirino.text)>0 : chk_kalamaki_xoirino.text = str(int(chk_kalamaki_xoirino.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kalamaki_xoirino
+                    name: 'Χοιρινό'
+                    price: 1.50
+                    amount: int(chk_kalamaki_xoirino.text)
+                    category: "Καλαμάκια"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kalamaki_xoirino.text = str(int(chk_kalamaki_xoirino.text) + 1) 
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κοτόπουλο καλαμάκι'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kalamaki_kotopoulo.text)>0 : chk_kalamaki_kotopoulo.text = str(int(chk_kalamaki_kotopoulo.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kalamaki_kotopoulo
+                    name: 'Κοτόπουλο'
+                    price: 1.50
+                    amount: int(chk_kalamaki_kotopoulo.text)
+                    category: "Καλαμάκια"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kalamaki_kotopoulo.text = str(int(chk_kalamaki_kotopoulo.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κεμπάπ'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kalamaki_kempap.text)>0 : chk_kalamaki_kempap.text = str(int(chk_kalamaki_kempap.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kalamaki_kempap
+                    name: 'Κεμπάπ'
+                    price: 1.50
+                    amount: int(chk_kalamaki_kempap.text)
+                    category: "Καλαμάκια"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kalamaki_kempap.text = str(int(chk_kalamaki_kempap.text) + 1)     
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Λουκάνικο'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kalamaki_loukaniko.text)>0 : chk_kalamaki_loukaniko.text = str(int(chk_kalamaki_loukaniko.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kalamaki_loukaniko
+                    name: 'Λουκάνικο'
+                    price: 1.50
+                    amount: int(chk_kalamaki_loukaniko.text)
+                    category: "Καλαμάκια"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kalamaki_loukaniko.text = str(int(chk_kalamaki_loukaniko.text) + 1)       
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κοτομπέικον'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kalamaki_kotompeikon.text)>0 : chk_kalamaki_kotompeikon.text = str(int(chk_kalamaki_kotompeikon.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kalamaki_kotompeikon
+                    name: 'Κοτομπέικον'
+                    price: 1.70
+                    amount: int(chk_kalamaki_kotompeikon.text)
+                    category: "Καλαμάκια"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kalamaki_kotompeikon.text = str(int(chk_kalamaki_kotompeikon.text) + 1)   
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Μπιφτέκι γεμιστό'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kalamaki_mpifteki_gemisto.text)>0 : chk_kalamaki_mpifteki_gemisto.text = str(int(chk_kalamaki_mpifteki_gemisto.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kalamaki_mpifteki_gemisto
+                    name: 'Μπιφτέκι γεμιστό'
+                    price: 1.70
+                    amount: int(chk_kalamaki_mpifteki_gemisto.text)
+                    category: "Καλαμάκια"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kalamaki_mpifteki_gemisto.text = str(int(chk_kalamaki_mpifteki_gemisto.text) + 1)
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+
+                            chk_kalamaki_xoirino.text = '0'
+                            chk_kalamaki_kotopoulo.text = '0'
+                            chk_kalamaki_kempap.text = '0'
+                            chk_kalamaki_loukaniko.text = '0'
+                            chk_kalamaki_kotompeikon.text = '0'
+                            chk_kalamaki_mpifteki_gemisto.text = '0'
+                            
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_kalamaki_xoirino.text = '0'
+                            chk_kalamaki_kotopoulo.text = '0'
+                            chk_kalamaki_kempap.text = '0'
+                            chk_kalamaki_loukaniko.text = '0'
+                            chk_kalamaki_kotompeikon.text = '0'
+                            chk_kalamaki_mpifteki_gemisto.text = '0'
+                            
+<TulixtaScreen>:
+
+    guros_xoirino: chk_guros_xoirino
+    guros_kotopoulo: chk_guros_kotopoulo
+    guros_kalamaki_xoirino: chk_guros_kalamaki_xoirino
+    guros_kalamaki_kotopoulo: chk_guros_kalamaki_kotopoulo
+    guros_kotompeikon: chk_guros_kotompeikon
+    guros_loukaniko: chk_guros_loukaniko
+    guros_kempap: chk_guros_kempap
+    guros_mpifteki_gemisto: chk_guros_mpifteki_gemisto
+
+    tul_ulika_btn_guros_xoirino: chk_tul_ulika_btn_guros_xoirino
+    tul_ulika_btn_guros_kotopoulo: chk_tul_ulika_btn_guros_kotopoulo
+    tul_ulika_btn_guros_kal_xoir: chk_tul_ulika_btn_guros_kal_xoir
+    tul_ulika_btn_guros_kal_kot: chk_tul_ulika_btn_guros_kal_kot
+    tul_ulika_btn_guros_kotomp: chk_tul_ulika_btn_guros_kotomp
+    tul_ulika_btn_guros_louk: chk_tul_ulika_btn_guros_louk
+    tul_ulika_btn_guros_kempap: chk_tul_ulika_btn_guros_kempap
+    tul_ulika_btn_guros_mpift_gem: chk_tul_ulika_btn_guros_mpift_gem
+    
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:8
+            
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος χοιρινός' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_xoirino.text)>0 : chk_guros_xoirino.text = str(int(chk_guros_xoirino.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_xoirino
+                    name: 'Γύρος Χοιρινός'
+                    price: 2.20
+                    amount: int(chk_guros_xoirino.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_xoirino.text = str(int(chk_guros_xoirino.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_xoirino
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_xoirino.text) == 0: root.show_popup()
+                        else: root.insert_data_guros_xoirino(); chk_tul_ulika_btn_guros_xoirino.value = 1; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika'
+           
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος κοτόπουλο' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_kotopoulo.text)>0 : chk_guros_kotopoulo.text = str(int(chk_guros_kotopoulo.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_kotopoulo
+                    name: 'Γύρος κοτόπουλο'
+                    price: 2.20
+                    amount: int(chk_guros_kotopoulo.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_kotopoulo.text = str(int(chk_guros_kotopoulo.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_kotopoulo
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_kotopoulo.text) == 0: root.show_popup()
+                        else: root.insert_data_guros_kotopoulo() ; chk_tul_ulika_btn_guros_kotopoulo.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika'  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Καλαμάκι χοιρινό' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_kalamaki_xoirino.text)>0 : chk_guros_kalamaki_xoirino.text = str(int(chk_guros_kalamaki_xoirino.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_kalamaki_xoirino
+                    name: 'Καλαμάκι χοιρινό'
+                    price: 2.20
+                    amount: int(chk_guros_kalamaki_xoirino.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_kalamaki_xoirino.text = str(int(chk_guros_kalamaki_xoirino.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_kal_xoir
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_kalamaki_xoirino.text) == 0: root.show_popup()
+                        else: root.insert_data_kalamaki_xoirino() ; chk_tul_ulika_btn_guros_kal_xoir.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika' 
+                    
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Καλαμάκι κοτόπουλο' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_kalamaki_kotopoulo.text)>0 : chk_guros_kalamaki_kotopoulo.text = str(int(chk_guros_kalamaki_kotopoulo.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_kalamaki_kotopoulo
+                    name: 'Καλαμάκι κοτόπουλο'
+                    price: 2.20
+                    amount: int(chk_guros_kalamaki_kotopoulo.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_kalamaki_kotopoulo.text = str(int(chk_guros_kalamaki_kotopoulo.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_kal_kot
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_kalamaki_kotopoulo.text) == 0: root.show_popup()
+                        else: root.insert_data_kalamaki_kotopoulo() ; chk_tul_ulika_btn_guros_kal_kot.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika' 
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κοτομπέικον' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_kotompeikon.text)>0 : chk_guros_kotompeikon.text = str(int(chk_guros_kotompeikon.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_kotompeikon
+                    name: 'Κοτομπέικον'
+                    price: 2.40
+                    amount: int(chk_guros_kotompeikon.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_kotompeikon.text = str(int(chk_guros_kotompeikon.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_kotomp
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_kotompeikon.text) == 0: root.show_popup()
+                        else: root.insert_data_kotompeikon() ; chk_tul_ulika_btn_guros_kotomp.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika' 
+                         
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Λουκάνικο' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_loukaniko.text)>0 : chk_guros_loukaniko.text = str(int(chk_guros_loukaniko.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_loukaniko
+                    name: 'Λουκάνικο'
+                    price: 2.20
+                    amount: int(chk_guros_loukaniko.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_loukaniko.text = str(int(chk_guros_loukaniko.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_louk
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_loukaniko.text) == 0: root.show_popup()
+                        else: root.insert_data_loukaniko() ; chk_tul_ulika_btn_guros_louk.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika'
+                          
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κεμπάπ' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_kempap.text)>0 : chk_guros_kempap.text = str(int(chk_guros_kempap.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_kempap
+                    name: 'Κεμπάπ'
+                    price: 2.20
+                    amount: int(chk_guros_kempap.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_kempap.text = str(int(chk_guros_kempap.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_kempap
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_kempap.text) == 0: root.show_popup()
+                        else: root.insert_data_kempap() ; chk_tul_ulika_btn_guros_kempap.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika' 
+                        
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Μπιφτέκι γεμιστό' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_mpifteki_gemisto.text)>0 : chk_guros_mpifteki_gemisto.text = str(int(chk_guros_mpifteki_gemisto.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_guros_mpifteki_gemisto
+                    name: 'Μπιφτέκι γεμιστό'
+                    price: 2.40
+                    amount: int(chk_guros_mpifteki_gemisto.text)
+                    category: "Τυλιχτά"
+                    ulika: "ΑΠ' ΟΛΑ"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_mpifteki_gemisto.text = str(int(chk_guros_mpifteki_gemisto.text) + 1)
+                Button:
+                    size_hint:0.2,0.2
+                    text: 'Y'
+                    id: chk_tul_ulika_btn_guros_mpift_gem
+                    insert_ulika: True
+                    value: 0
+                    on_release:
+                        if int(chk_guros_mpifteki_gemisto.text) == 0: root.show_popup()
+                        else: root.insert_data_mpifteki_gemisto() ; chk_tul_ulika_btn_guros_mpift_gem.value = 1 ; root.manager.transition.direction = 'left' ; root.manager.current = 'tulixta_ulika' 
+                        
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+
+                            chk_guros_xoirino.text = '0'
+                            chk_guros_kotopoulo.text = '0'
+                            chk_guros_kalamaki_xoirino.text = '0'
+                            chk_guros_kalamaki_kotopoulo.text = '0'
+                            chk_guros_kotompeikon.text = '0'
+                            chk_guros_loukaniko.text = '0'
+                            chk_guros_kempap.text = '0'
+                            chk_guros_mpifteki_gemisto.text = '0'
+
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            
+                            chk_guros_xoirino.text = '0'
+                            chk_guros_kotopoulo.text = '0'
+                            chk_guros_kalamaki_xoirino.text = '0'
+                            chk_guros_kalamaki_kotopoulo.text = '0'
+                            chk_guros_kotompeikon.text = '0'
+                            chk_guros_loukaniko.text = '0'
+                            chk_guros_kempap.text = '0'
+                            chk_guros_mpifteki_gemisto.text = '0'
+
+                            chk_tul_ulika_btn_guros_xoirino.value = 0
+                            chk_tul_ulika_btn_guros_kotopoulo.value = 0
+                            chk_tul_ulika_btn_guros_kal_xoir.value = 0
+                            chk_tul_ulika_btn_guros_kal_kot.value = 0
+                            chk_tul_ulika_btn_guros_kotomp.value = 0
+                            chk_tul_ulika_btn_guros_louk.value = 0
+                            chk_tul_ulika_btn_guros_kempap.value = 0
+                            chk_tul_ulika_btn_guros_mpift_gem.value = 0
+
+<TulixtaYlikaScreen>:
+
+    tul_ulika_patates: chk_tul_ulika_patates
+    tul_ulika_ntomata: chk_tul_ulika_ntomata
+    tul_ulika_kremmudi: chk_tul_ulika_kremmudi
+    tul_ulika_marouli: chk_tul_ulika_marouli
+    tul_ulika_tzatziki: chk_tul_ulika_tzatziki
+    tul_ulika_moustarda: chk_tul_ulika_moustarda
+    tul_ulika_ketsap: chk_tul_ulika_ketsap
+    tul_ulika_sws_moustarda: chk_tul_ulika_sws_moustarda
+    tul_ulika_sws_giaourti: chk_tul_ulika_sws_giaourti
+    tul_ulika_paprika: chk_tul_ulika_paprika
+    tul_ulika_paprika_kauteri: chk_tul_ulika_paprika_kauteri
+    tul_ulika_pita_kanoniki: chk_tul_ulika_pita_kanoniki
+    tul_ulika_pita_olikis: chk_tul_ulika_pita_olikis
+    tul_ulika_pita_kalampokiou: chk_tul_ulika_pita_kalampokiou
+    tul_ulika_2pita_kanoniki: chk_tul_ulika_2pita_kanoniki
+    tul_ulika_2pita_olikis: chk_tul_ulika_2pita_olikis
+    tul_ulika_2pita_kalampokiou: chk_tul_ulika_2pita_kalampokiou
+
+
+    GridLayout:
+        cols:3
+        size: root.width, root.height
+
+        GridLayout:
+            rows:11
+            size_hint: 0.5,1
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Πατάτες'
+                CheckBox:
+                    id: chk_tul_ulika_patates
+                    text:'Πατάτες'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Ντομάτα'
+                CheckBox:
+                    id: chk_tul_ulika_ntomata
+                    text:'Ντομάτα'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Κρεμμύδι'
+                CheckBox:
+                    id: chk_tul_ulika_kremmudi
+                    text:'Κρεμμύδι'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Μαρούλι'
+                CheckBox:
+                    id: chk_tul_ulika_marouli
+                    text:'Μαρούλι'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Τζατζίκι'
+                CheckBox:
+                    id: chk_tul_ulika_tzatziki
+                    text:'Τζατζίκι'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Κέτσαπ'
+                CheckBox:
+                    id: chk_tul_ulika_ketsap
+                    text:'Κέτσαπ'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Μουστάρδα'
+                CheckBox:
+                    id: chk_tul_ulika_moustarda
+                    text:'Μουστάρδα'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Σως μουστάρδας'
+                CheckBox:
+                    id: chk_tul_ulika_sws_moustarda
+                    text:'Σως μουστάρδας'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Σως γιαουρτιού'
+                CheckBox:
+                    id: chk_tul_ulika_sws_giaourti
+                    text:'Σως γιαουρτιού'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Πάπρικα'
+                CheckBox:
+                    id: chk_tul_ulika_paprika
+                    text:'Πάπρικα'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.5
+                Label:
+                    text:'Πάπρικα καυτερή'
+                CheckBox:
+                    id: chk_tul_ulika_paprika_kauteri
+                    text:'Πάπρικα καυτερή'
+           
+        GridLayout:
+            rows:7
+            size_hint: 0.4,1
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.2
+                Label:
+                    text:'Πίτα κανονική'
+                CheckBox:
+                    id: chk_tul_ulika_pita_kanoniki
+                    text:'Πίτα κανονική'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.2
+                Label:
+                    text:'Πίτα ολικής'
+                CheckBox:
+                    id: chk_tul_ulika_pita_olikis
+                    text:'Πίτα ολικής'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.2
+                Label:
+                    text:'Πίτα καλαμποκιού'
+                CheckBox:
+                    id: chk_tul_ulika_pita_kalampokiou
+                    text:'Πίτα καλαμποκιού'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.2
+                Label:
+                    text:'2 x Πίτα κανονική'
+                CheckBox:
+                    id: chk_tul_ulika_2pita_kanoniki
+                    text:'2 x Πίτα κανονική'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.2
+                Label:
+                    text:'2 x Πίτα ολικής'
+                CheckBox:
+                    id: chk_tul_ulika_2pita_olikis
+                    text:'2 x Πίτα ολικής'
+
+            GridLayout:
+                rows:1
+                padding: root.width * .01, root.height * .01
+                size_hint: 1,0.2
+                Label:
+                    text:'2 x Πίτα καλαμποκιού'
+                CheckBox:
+                    id: chk_tul_ulika_2pita_kalampokiou
+                    text:'2 x Πίτα καλαμποκιού'
+
+            
+
+            GridLayout:
+                rows:1
+                Label:
+                    text:''
+
+
+        GridLayout:
+            
+            rows:3
+            size_hint:0.7,1
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            #root.delete_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'tulixta'
+                            chk_tul_ulika_patates.state = 'normal'
+                            chk_tul_ulika_ntomata.state = 'normal'
+                            chk_tul_ulika_kremmudi.state = 'normal'
+                            chk_tul_ulika_marouli.state = 'normal'
+                            chk_tul_ulika_tzatziki.state = 'normal'
+                            chk_tul_ulika_moustarda.state = 'normal'
+                            chk_tul_ulika_ketsap.state = 'normal'
+                            chk_tul_ulika_sws_moustarda.state = 'normal'
+                            chk_tul_ulika_sws_giaourti.state = 'normal'
+                            chk_tul_ulika_paprika.state = 'normal'
+                            chk_tul_ulika_paprika_kauteri.state = 'normal'
+                            chk_tul_ulika_pita_kanoniki.state = 'normal'
+                            chk_tul_ulika_pita_olikis.state = 'normal'
+                            chk_tul_ulika_pita_kalampokiou.state = 'normal'
+                            chk_tul_ulika_2pita_kanoniki.state = 'normal'
+                            chk_tul_ulika_2pita_olikis.state = 'normal'
+                            chk_tul_ulika_2pita_kalampokiou.state = 'normal'
+
+                            
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'tulixta'
+                            chk_tul_ulika_patates.state = 'normal'
+                            chk_tul_ulika_ntomata.state = 'normal'
+                            chk_tul_ulika_kremmudi.state = 'normal'
+                            chk_tul_ulika_marouli.state = 'normal'
+                            chk_tul_ulika_tzatziki.state = 'normal'
+                            chk_tul_ulika_moustarda.state = 'normal'
+                            chk_tul_ulika_ketsap.state = 'normal'
+                            chk_tul_ulika_sws_moustarda.state = 'normal'
+                            chk_tul_ulika_sws_giaourti.state = 'normal'
+                            chk_tul_ulika_paprika.state = 'normal'
+                            chk_tul_ulika_paprika_kauteri.state = 'normal'
+                            chk_tul_ulika_pita_kanoniki.state = 'normal'
+                            chk_tul_ulika_pita_olikis.state = 'normal'
+                            chk_tul_ulika_pita_kalampokiou.state = 'normal'
+                            chk_tul_ulika_2pita_kanoniki.state = 'normal'
+                            chk_tul_ulika_2pita_olikis.state = 'normal'
+                            chk_tul_ulika_2pita_kalampokiou.state = 'normal'
+
+<MeridesScreen>:
+    merida_guros_xoirino : chk_merida_guros_xoirino
+    merida_guros_kotopoulo: chk_merida_guros_kotopoulo
+    merida_kalamaki_xoirino: chk_merida_kalamaki_xoirino
+    merida_kalamaki_kotopoulo: chk_merida_kalamaki_kotopoulo
+    merida_kotompeikon: chk_merida_kotompeikon
+    merida_loukaniko: chk_merida_loukaniko
+    merida_kempap: chk_merida_kempap
+    merida_mpifteki_gemisto: chk_merida_mpifteki_gemisto
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:8
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος χοιρινός' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_guros_xoirino.text)>0 : chk_merida_guros_xoirino.text = str(int(chk_merida_guros_xoirino.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_guros_xoirino
+                    name: 'Γύρος χοιρινός'
+                    price: 8.00
+                    amount: int(chk_merida_guros_xoirino.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_guros_xoirino.text = str(int(chk_merida_guros_xoirino.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος κοτόπουλο' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_guros_kotopoulo.text)>0 : chk_merida_guros_kotopoulo.text = str(int(chk_merida_guros_kotopoulo.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_guros_kotopoulo
+                    name: 'Γύρος κοτόπουλο'
+                    price: 8.00
+                    amount: int(chk_merida_guros_kotopoulo.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_guros_kotopoulo.text = str(int(chk_merida_guros_kotopoulo.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Καλαμάκι χοιρινό' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_kalamaki_xoirino.text)>0 : chk_merida_kalamaki_xoirino.text = str(int(chk_merida_kalamaki_xoirino.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_kalamaki_xoirino
+                    name: 'καλαμάκι χοιρινό'
+                    price: 8.00
+                    amount: int(chk_merida_kalamaki_xoirino.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_kalamaki_xoirino.text = str(int(chk_merida_kalamaki_xoirino.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Καλαμάκι κοτόπουλο' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_kalamaki_kotopoulo.text)>0 : chk_merida_kalamaki_kotopoulo.text = str(int(chk_merida_kalamaki_kotopoulo.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_kalamaki_kotopoulo
+                    name: 'Καλαμάκι κοτόπουλο'
+                    price: 8.00
+                    amount: int(chk_merida_kalamaki_kotopoulo.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_kalamaki_kotopoulo.text = str(int(chk_merida_kalamaki_kotopoulo.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κοτομπέικον' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_kotompeikon.text)>0 : chk_merida_kotompeikon.text = str(int(chk_merida_kotompeikon.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_kotompeikon
+                    name: 'Κοτομπέικον'
+                    price: 8.50
+                    amount: int(chk_merida_kotompeikon.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_kotompeikon.text = str(int(chk_merida_kotompeikon.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Λουκάνικο' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_loukaniko.text)>0 : chk_merida_loukaniko.text = str(int(chk_merida_loukaniko.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_loukaniko
+                    name: 'Λουκάνικο'
+                    price: 8.00
+                    amount: int(chk_merida_loukaniko.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_loukaniko.text = str(int(chk_merida_loukaniko.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Κεμπάπ' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_kempap.text)>0 : chk_merida_kempap.text = str(int(chk_merida_kempap.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_kempap
+                    name: 'Κεμπάπ'
+                    price: 8.00
+                    amount: int(chk_merida_kempap.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_kempap.text = str(int(chk_merida_kempap.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Μπιφτέκι γεμιστό' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_merida_mpifteki_gemisto.text)>0 : chk_merida_mpifteki_gemisto.text = str(int(chk_merida_mpifteki_gemisto.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_merida_mpifteki_gemisto
+                    name: 'Μπιφτέκι γεμιστό'
+                    price: 8.50
+                    amount: int(chk_merida_mpifteki_gemisto.text)
+                    category: "Μερίδες"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_merida_mpifteki_gemisto.text = str(int(chk_merida_mpifteki_gemisto.text) + 1)    
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+
+                            chk_merida_guros_xoirino.text = '0'
+                            chk_merida_guros_kotopoulo.text = '0'
+                            chk_merida_kalamaki_xoirino.text = '0'
+                            chk_merida_kalamaki_kotopoulo.text = '0'
+                            chk_merida_kotompeikon.text = '0'
+                            chk_merida_loukaniko.text = '0'
+                            chk_merida_kempap.text = '0'
+                            chk_merida_mpifteki_gemisto.text = '0'
+
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_merida_guros_xoirino.text = '0'
+                            chk_merida_guros_kotopoulo.text = '0'
+                            chk_merida_kalamaki_xoirino.text = '0'
+                            chk_merida_kalamaki_kotopoulo.text = '0'
+                            chk_merida_kotompeikon.text = '0'
+                            chk_merida_loukaniko.text = '0'
+                            chk_merida_kempap.text = '0'
+                            chk_merida_mpifteki_gemisto.text = '0'
+
+<MeToKiloScreen>:
+    
+    kilo_guros_xoirino: chk_kilo_guros_xoirino
+    kilo_guros_kotopoulo: chk_kilo_guros_kotopoulo
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:4
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος χοιρινός'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kilo_guros_xoirino.text)>0 : chk_kilo_guros_xoirino.text = str(int(chk_kilo_guros_xoirino.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kilo_guros_xoirino
+                    name: 'Γύρος χοιρινός'
+                    price: 19.00
+                    amount: int(chk_kilo_guros_xoirino.text)
+                    category: "Με το Κιλό"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kilo_guros_xoirino.text = str(int(chk_kilo_guros_xoirino.text) + 1) 
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος κοτόπουλο'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_kilo_guros_kotopoulo.text)>0 : chk_kilo_guros_kotopoulo.text = str(int(chk_kilo_guros_kotopoulo.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_kilo_guros_kotopoulo
+                    name: 'Γύρος κοτόπουλο'
+                    price: 19.00
+                    amount: int(chk_kilo_guros_kotopoulo.text)
+                    category: "Με το Κιλό"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_kilo_guros_kotopoulo.text = str(int(chk_kilo_guros_kotopoulo.text) + 1)
+                
+            Label:
+                text:''
+            Label:
+                text:'' 
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+
+                            chk_kilo_guros_xoirino.text = '0'
+                            chk_kilo_guros_kotopoulo.text = '0'
+
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_kilo_guros_xoirino.text = '0'
+                            chk_kilo_guros_kotopoulo.text = '0'
+
+<GurosClubScreen>:
+    
+    guros_club: chk_guros_club
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:4
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Γύρος Club' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_guros_club.text)>0 : chk_guros_club.text = str(int(chk_guros_club.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    id: chk_guros_club
+                    name: 'Γύρος Club'
+                    text: '0'
+                    price: 9.00
+                    amount: int(chk_guros_club.text)
+                    category: "Γύρος Club"
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_guros_club.text = str(int(chk_guros_club.text) + 1)  
+
+            Label:
+                text:''
+            Label:
+                text:''
+            Label:
+                text:''
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_guros_club.text = '0'
+
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_guros_club.text = '0'
+
+<PoikiliesScreen>:
+    poikilia_mikri: chk_poikilia_mikri
+    poikilia_megali: chk_poikilia_megali
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:4
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Μικρή' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_poikilia_mikri.text)>0 : chk_poikilia_mikri.text = str(int(chk_poikilia_mikri.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_poikilia_mikri
+                    name: 'Μικρή'
+                    price: 15.00
+                    amount: int(chk_poikilia_mikri.text)
+                    category: 'Ποικιλίες'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_poikilia_mikri.text = str(int(chk_poikilia_mikri.text) + 1)  
+
+            GridLayout:
+                rows:1
+                padding: root.width * .04, root.height * .04
+                size_hint: 1,0.5
+                Label:
+                    text: 'Μεγάλη' 
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '-'
+                    on_press: if int(chk_poikilia_megali.text)>0 : chk_poikilia_megali.text = str(int(chk_poikilia_megali.text) - 1)
+                Label:
+                    size_hint: 0.3,0.3
+                    text: '0'
+                    id: chk_poikilia_megali
+                    name: 'Μεγάλη'
+                    price: 22.00
+                    amount: int(chk_poikilia_megali.text)
+                    category: 'Ποικιλίες'
+                Button:
+                    size_hint: 0.2,0.2
+                    text: '+'
+                    on_press: chk_poikilia_megali.text = str(int(chk_poikilia_megali.text) + 1)
+            Label:
+                text:''
+            Label:
+                text:''
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_poikilia_mikri.text = '0'
+                            chk_poikilia_megali.text = '0'
+
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_poikilia_mikri.text = '0'
+                            chk_poikilia_megali.text = '0'
+
+<AnapsuktikaScreen>:
+    
+    coca_cola_330: chk_coca_cola_330 
+    coca_cola_500: chk_coca_cola_500
+    coca_cola_1500: chk_coca_cola_1500
+    coca_cola_zero_330: chk_coca_cola_zero_330
+    coca_cola_zero_500: chk_coca_cola_zero_500
+    coca_cola_zero_1500: chk_coca_cola_zero_1500
+    coca_cola_light_330: chk_coca_cola_light_330
+    coca_cola_light_500: chk_coca_cola_light_500
+    coca_cola_light_1500: chk_coca_cola_light_1500
+    sprite_330: chk_sprite_330
+    fanta_330: chk_fanta_330
+    soda_330: chk_soda_330
+    amstel_330: chk_amstel_330
+    alpha_330: chk_alpha_330
+    heineken_330: chk_heineken_330
+    fix_330: chk_fix_330
+    nero_500: chk_nero_500
+    nero_1500: chk_nero_1500
+    krasi_1500: chk_krasi_1500
+
+    GridLayout:
+        cols:2
+
+        GridLayout:
+            rows:2
+            
+            GridLayout: 
+                cols:4 
+                size_hint_y: 0.07
+
+                Label:
+                    text:''
+                Label:
+                    text:'330ml'
+                Label:
+                    text:'500ml'
+                Label:
+                    text:'1.5Lt'
+
+
+            GridLayout:
+                rows:12
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Coca Cola Classic'
+                        size_hint: 0.8,1
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_330.text)>0 : chk_coca_cola_330.text = str(int(chk_coca_cola_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_330
+                        name: 'Coca Cola Classic 330ml'
+                        price: 1.20
+                        amount: int(chk_coca_cola_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_330.text = str(int(chk_coca_cola_330.text) + 1)
+                    
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_500.text)>0 : chk_coca_cola_500.text = str(int(chk_coca_cola_500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_500
+                        name: 'Coca Cola Classic 500ml'
+                        price: 1.50
+                        amount: int(chk_coca_cola_500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_500.text = str(int(chk_coca_cola_500.text) + 1)
+                    
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_1500.text)>0 : chk_coca_cola_1500.text = str(int(chk_coca_cola_1500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_1500
+                        name: 'Coca Cola Classic 1.5Lt'
+                        price: 2.00
+                        amount: int(chk_coca_cola_1500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_1500.text = str(int(chk_coca_cola_1500.text) + 1)   
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Coca Cola Light'
+                        size_hint: 0.8,1
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_light_330.text)>0 : chk_coca_cola_light_330.text = str(int(chk_coca_cola_light_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_light_330
+                        name: 'Coca Cola Light 330ml'
+                        price: 1.20
+                        amount: int(chk_coca_cola_light_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_light_330.text = str(int(chk_coca_cola_light_330.text) + 1)
+                    
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_light_500.text)>0 : chk_coca_cola_light_500.text = str(int(chk_coca_cola_light_500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_light_500
+                        name: 'Coca Cola Light 500ml'
+                        price: 1.50
+                        amount: int(chk_coca_cola_light_500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_light_500.text = str(int(chk_coca_cola_light_500.text) + 1)   
+
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_light_1500.text)>0 : chk_coca_cola_light_1500.text = str(int(chk_coca_cola_light_1500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_light_1500
+                        name: 'Coca Cola Light 1.5Lt'
+                        price: 2.00
+                        amount: int(chk_coca_cola_light_1500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_light_1500.text = str(int(chk_coca_cola_light_1500.text) + 1)
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Coca Cola Zero'
+                        size_hint: 0.8,1
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_zero_330.text)>0 : chk_coca_cola_zero_330.text = str(int(chk_coca_cola_zero_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_zero_330
+                        name: 'Coca Cola Zero 330ml'
+                        price: 1.20
+                        amount: int(chk_coca_cola_zero_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_zero_330.text = str(int(chk_coca_cola_zero_330.text) + 1)
+                    
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_zero_500.text)>0 : chk_coca_cola_zero_500.text = str(int(chk_coca_cola_zero_500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_zero_500
+                        name: 'Coca Cola Zero 500ml'
+                        price: 1.50
+                        amount: int(chk_coca_cola_zero_500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_zero_500.text = str(int(chk_coca_cola_zero_500.text) + 1)   
+
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_coca_cola_zero_1500.text)>0 : chk_coca_cola_zero_1500.text = str(int(chk_coca_cola_zero_1500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_coca_cola_zero_1500
+                        name: 'Coca Cola Zero 1.5Lt'
+                        price: 2.00
+                        amount: int(chk_coca_cola_zero_1500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_coca_cola_zero_1500.text = str(int(chk_coca_cola_zero_1500.text) + 1)   
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Sprite'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_sprite_330.text)>0 : chk_sprite_330.text = str(int(chk_sprite_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_sprite_330
+                        name: 'Sprite 330ml'
+                        price: 1.20
+                        amount: int(chk_sprite_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_sprite_330.text = str(int(chk_sprite_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: ''
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Fanta'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_fanta_330.text)>0 : chk_fanta_330.text = str(int(chk_fanta_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_fanta_330
+                        name: 'Fanta 330ml'
+                        price: 1.20
+                        amount: int(chk_fanta_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_fanta_330.text = str(int(chk_fanta_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: ''
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Soda'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_soda_330.text)>0 : chk_soda_330.text = str(int(chk_soda_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_soda_330
+                        name: 'Soda 330ml'
+                        price: 1.20
+                        amount: int(chk_soda_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_soda_330.text = str(int(chk_soda_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: ''
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Amstel'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_amstel_330.text)>0 : chk_amstel_330.text = str(int(chk_amstel_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_amstel_330
+                        name: 'Amstel 330ml'
+                        price: 1.70
+                        amount: int(chk_amstel_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_amstel_330.text = str(int(chk_amstel_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: ''  
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Άλφα'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_alpha_330.text)>0 : chk_alpha_330.text = str(int(chk_alpha_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_alpha_330
+                        name: 'Άλφα 330ml'
+                        price: 1.70
+                        amount: int(chk_alpha_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_alpha_330.text = str(int(chk_alpha_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: ''   
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Heineken'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_heineken_330.text)>0 : chk_heineken_330.text = str(int(chk_heineken_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_heineken_330
+                        name: 'Heineken 330ml'
+                        price: 1.70
+                        amount: int(chk_heineken_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_heineken_330.text = str(int(chk_heineken_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: '' 
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Fix'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_fix_330.text)>0 : chk_fix_330.text = str(int(chk_fix_330.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_fix_330
+                        name: 'Fix 330ml'
+                        price: 1.70
+                        amount: int(chk_fix_330.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_fix_330.text = str(int(chk_fix_330.text) + 1)
+                    Label:
+                        size_hint: 0.7,1
+                        text: ''   
+                    Label:
+                        text: '' 
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Νερό'
+                    Label:
+                        size_hint: 0.8,1
+                        text: ''   
+    
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_nero_500.text)>0 : chk_nero_500.text = str(int(chk_nero_500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_nero_500
+                        name: 'Νερό 500ml'
+                        price: 0.50
+                        amount: int(chk_nero_500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_nero_500.text = str(int(chk_nero_500.text) + 1)
+
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_nero_1500.text)>0 : chk_nero_1500.text = str(int(chk_nero_1500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_nero_1500
+                        name: 'Νερό 1.5Lt'
+                        price: 1.00
+                        amount: int(chk_nero_1500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_nero_1500.text = str(int(chk_nero_1500.text) + 1)  
+
+                GridLayout:
+                    rows:1
+                    padding: root.width * .01, root.height * .01
+                    size_hint: 1,0.5
+                    Label:
+                        text: 'Κρασί'
+                    Label:
+                        size_hint: 0.45,1
+                        text: ''   
+                    Label:
+                        text: ''
+                    
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '-'
+                        on_press: if int(chk_krasi_1500.text)>0 : chk_krasi_1500.text = str(int(chk_krasi_1500.text) - 1)
+                    Label:
+                        size_hint: 0.3,0.3
+                        text: '0'
+                        id: chk_krasi_1500
+                        name: 'Κρασί 1.5Lt'
+                        price: 5.00
+                        amount: int(chk_krasi_1500.text)
+                        category: 'Ποτά/Αναψυκτικά'
+                    Button:
+                        size_hint: 0.2,0.2
+                        text: '+'
+                        on_press: chk_krasi_1500.text = str(int(chk_krasi_1500.text) + 1)
+
+        GridLayout:
+            
+            rows:3
+
+            Label:
+                text:''
+            Label:
+                text:''
+            GridLayout:
+                cols:2
+                size_hint:0.5,0.2
+                Label:
+                    size_hint:0.3,1 
+                    text:''
+                GridLayout:
+                    cols:2
+                    Button:
+                        text: 'Πίσω'
+                        size: root.width/4, root.height/4
+                        on_press:
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_coca_cola_330.text = '0'
+                            chk_coca_cola_500.text = '0'
+                            chk_coca_cola_1500.text = '0'
+                            chk_coca_cola_zero_330.text = '0'
+                            chk_coca_cola_zero_500.text = '0'
+                            chk_coca_cola_zero_1500.text = '0'
+                            chk_coca_cola_light_330.text = '0'
+                            chk_coca_cola_light_500.text = '0'
+                            chk_coca_cola_light_1500.text = '0'
+                            chk_sprite_330.text = '0'
+                            chk_fanta_330.text = '0'
+                            chk_soda_330.text = '0'
+                            chk_amstel_330.text = '0'
+                            chk_alpha_330.text = '0'
+                            chk_heineken_330.text = '0'
+                            chk_fix_330.text = '0'
+                            chk_nero_500.text = '0'
+                            chk_nero_1500.text = '0'
+                            chk_krasi_1500.text = '0'
+
+                    Button:
+                        text:'Αποθήκευση'
+                        on_press:
+                            root.insert_data()
+                            root.manager.transition.direction = 'right'    
+                            root.manager.current = 'menu'
+                            chk_coca_cola_330.text = '0'
+                            chk_coca_cola_500.text = '0'
+                            chk_coca_cola_1500.text = '0'
+                            chk_coca_cola_zero_330.text = '0'
+                            chk_coca_cola_zero_500.text = '0'
+                            chk_coca_cola_zero_1500.text = '0'
+                            chk_coca_cola_light_330.text = '0'
+                            chk_coca_cola_light_500.text = '0'
+                            chk_coca_cola_light_1500.text = '0'
+                            chk_sprite_330.text = '0'
+                            chk_fanta_330.text = '0'
+                            chk_soda_330.text = '0'
+                            chk_amstel_330.text = '0'
+                            chk_alpha_330.text = '0'
+                            chk_heineken_330.text = '0'
+                            chk_fix_330.text = '0'
+                            chk_nero_500.text = '0'
+                            chk_nero_1500.text = '0'
+                            chk_krasi_1500.text = '0'
+          
+
+<PosothtaPopupScreen>:
+
+    GridLayout:
+        rows:2
+        id: pop
+        auto_dismiss: False
+        Label:
+            text:'Επιλέξτε την ποσότητα που θέλετε!'
+
+# <ItemLabel@Label>:
+#     size_hint: 0.3,0.3
+#     id: chk_patates
+#     name: 'Πατάτες'
+#     price: 2.20
+#     text: '0'
+#     amount: int(chk_patates.text)
+#     value: 0
+#     category: "Ορεκτικά" 
